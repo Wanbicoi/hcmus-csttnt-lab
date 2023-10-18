@@ -23,6 +23,8 @@ class Graph:
 class Point:
   type -> "WALL", "NONE", "REWARD", "REQUIRED", "UP", "DOWN", "LEFT", "RIGHT"
   value -> int // if type == "REWARD"
+  x -> int
+  y -> int
 
 class Map:
   value -> Point[][]
@@ -33,7 +35,9 @@ The main.py will do following steps:
 
 1. Get input -> [[Map, Map, ...], [Map, Map, ...], ...] -> [[Graph, Graph, ...], [Graph, Graph, ...], ...]
 
-2. Implement algorithms: each function takes input: Graph + Map, output: Map
+2. Implement algorithms: each function takes input: Graph, output: Point[]
 
-3. Output -> map-file.text
+3. Output: 
+- Convert each Point[] to Map.
+- Write file: map-file.txt + jpg/mp4
 
