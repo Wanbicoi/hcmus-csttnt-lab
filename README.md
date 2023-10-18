@@ -33,7 +33,7 @@ The main.py will do following steps:
 
 1. Get input -> [[Map, Map, ...], [Map, Map, ...], ...] -> [[Graph, Graph, ...], [Graph, Graph, ...], ...]
 
-2. Implement algorithms: each function takes input: Graph, output: Map
+2. Implement algorithms: each function takes input: Graph + Map, output: Map
 
 3. Output -> map-file.text
 
