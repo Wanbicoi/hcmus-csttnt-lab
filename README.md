@@ -4,9 +4,18 @@ gắn link latex zô làm report nè, tui k biết làm :'<
 
 Report: [Latex](https://github.com/Wanbicoi/hcmus-csttnt-lab/blob/main/README.md)
 
-## Yêu cầu cơ bản:
 
-## Phương hướng đề xuất:
+## Run program
+
+clone this repo then execute
+
+```
+sh ./run.sh
+```
+
+**Required:** python >= 3.10
+
+## Guildline :>
 
 ```
 class Graph:
@@ -40,9 +49,10 @@ The main.py will do following steps:
 2. Implement algorithms: each function takes input: Graph, output: Point[]
 
 3. Output:
-    - Convert each Point[] to Map.
-    - Write file: map-file.txt + jpg/mp4
+   - Convert each Point[] to Map.
+   - Write file: map-file.txt + jpg/mp4
 
-References:
+## References:
+
 - [Video](https://www.facebook.com/nguyenthebinh288/videos/847813779289607)
 - [Web](https://ngottrong.github.io/FindShortestPath/)
