@@ -1,12 +1,14 @@
 from queue import Queue
 from collections import defaultdict
-def bfs(g):
+
+
+def bfs(g):  # input
     open = Queue()
-    open.put(g.start) # queue, contain nodes to traverse next
-    close = defaultdict(int) # check node traversed or not
-    traversed_nodes = [] # list containing ordered traversed nodes
-    prev = defaultdict(tuple) # contain the previous node to trace the route
-    route = [] # route from start to end
+    open.put(g.start)  # queue, contain nodes to traverse next
+    close = defaultdict(int)  # check node traversed or not
+    traversed_nodes = []  # list containing ordered traversed nodes
+    prev = defaultdict(tuple)  # contain the previous node to trace the route
+    route = []  # route from start to end
 
     while not open.empty():
         cur_node = open.get()
@@ -29,4 +31,3 @@ def bfs(g):
         route.append(g.start)
         route.reverse()
         return traversed_nodes, route
-        

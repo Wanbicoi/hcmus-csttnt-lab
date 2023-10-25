@@ -4,7 +4,6 @@ gắn link latex zô làm report nè, tui k biết làm :'<
 
 Report: [Latex](https://github.com/Wanbicoi/hcmus-csttnt-lab/blob/main/README.md)
 
-
 ## Run program
 
 clone this repo then execute
@@ -43,14 +42,20 @@ class Map:
 ```
 
 The main.py will do following steps:
+get input -> array of Graph
 
 1. Get input -> [[Map, Map, ...], [Map, Map, ...], ...] -> [[Graph, Graph, ...], [Graph, Graph, ...], ...]
+   DAT
 
 2. Implement algorithms: each function takes input: Graph, output: Point[]
+   TAN
+
+   output -> route, traversed_nodes
 
 3. Output:
    - Convert each Point[] to Map.
    - Write file: map-file.txt + jpg/mp4
+     TRUNG
 
 ## References:
 
