@@ -1,24 +1,24 @@
-from queue import Queue
 from collections import defaultdict
-def bfs(g):
-    open = Queue()
-    open.put(g.start) # queue, contain nodes to traverse next
+def dfs(g):
+    print(g.start)
+    print(g.end)
+    open = [g.start] # stack, contain nodes to traverse next
     close = defaultdict(int) # check node traversed or not
     traversed_nodes = [] # list containing ordered traversed nodes
-    prev = defaultdict(tuple) # contain the previous node to trace the route
+    prev = defaultdict(list) # contain the previous node to trace the route
     route = [] # route from start to end
-
-    while not open.empty():
-        cur_node = open.get()
+    while len(open) > 0:
+        cur_node = open.pop()
         close[cur_node] = 1
         traversed_nodes.append(cur_node)
         if cur_node == g.end:
             break
         for node in g.graph[cur_node]:
             if not close[node]:
-                open.put(node)
+                open.append(node)
                 prev[node] = cur_node
-    if prev[g.end] == tuple():
+    
+    if prev[g.end] == []:
         return traversed_nodes, route
     else:
         node = g.end
@@ -30,3 +30,6 @@ def bfs(g):
         route.reverse()
         return traversed_nodes, route
         
+
+
+
