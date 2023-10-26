@@ -10,12 +10,13 @@ class Graph:
             ordered traversed nodes (for illustration)
             traversed path (if found) 
     '''
-    def __init__(self, matrix, start, end, bonus_points=[]):
+    def __init__(self, matrix, start, end, bonus_points=[], pickup_points=[]):
         self.graph = defaultdict(list)
         self.start = start
         self.end = end
         self.bonus_nodes = [(x[0], x[1]) for x in bonus_points]
         self.bonus_points = [x[2] for x in bonus_points]
+        self.pickup_nodes = [(x[0], x[1]) for x in pickup_points]
         # initialize graph from given matrix
         self.graph[start] = self.get_adj_nodes(matrix, start[0], start[1])
         for i in range(len(matrix)):
