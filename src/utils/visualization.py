@@ -1,7 +1,6 @@
-import os
 import matplotlib.pyplot as plt
 
-def visualize_maze(matrix, bonus, start, end, route=None):
+def save_fig_visualization(matrix, bonus, start, end, save_file_path:str, route=None):
     """
     Args:
       1. matrix: The matrix read from the input file,
@@ -49,11 +48,4 @@ def visualize_maze(matrix, bonus, start, end, route=None):
     plt.text(end[1],-end[0],'EXIT',color='red',
          horizontalalignment='center',
          verticalalignment='center')
-    plt.xticks([])
-    plt.yticks([])
-    plt.show()
-    print(f'Starting point (x, y) = {start[0], start[1]}')
-    print(f'Ending point (x, y) = {end[0], end[1]}')
-
-    for _, point in enumerate(bonus):
-      print(f'Bonus point at position (x, y) = {point[0], point[1]} with point {point[2]}')
+    plt.savefig(save_file_path)
