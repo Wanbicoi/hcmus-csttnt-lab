@@ -1,4 +1,5 @@
 from collections import defaultdict
+import math
 class Graph:
     '''
         Graph representation: adjacency list
@@ -12,13 +13,12 @@ class Graph:
     '''
     def __init__(self, matrix, start, end, bonus_points=[], pickup_points=[]):
         self.graph = defaultdict(list)
-        self.matrix = matrix
         self.start = start
         self.end = end
-        self.cost = 1
         self.bonus_nodes = [(x[0], x[1]) for x in bonus_points]
         self.bonus_points = [x[2] for x in bonus_points]
         self.pickup_nodes = [(x[0], x[1]) for x in pickup_points]
+        self.cost = 1
         # initialize graph from given matrix
         self.graph[start] = self.get_adj_nodes(matrix, start[0], start[1])
         for i in range(len(matrix)):
@@ -26,6 +26,12 @@ class Graph:
                 if(matrix[i][j] == " "):
                     self.graph[(i, j)] = self.get_adj_nodes(matrix, i, j)
 
+    def heuristics(self, start, end):
+        return math.sqrt((start[0] - end[0]) ** 2 + (start[1] - end[1]) ** 2)
+    
+    def heuristics2(self, start, end):
+        return abs(start[0] - end[0]) + abs(start[1] - end[1])
+    
     def valid_node(self, matrix, i, j):
         if(i < 0 or i >= len(matrix) or j < 0 or j >= len(matrix[0])):
             return 0
@@ -41,16 +47,3 @@ class Graph:
             if(self.valid_node(matrix, row + i, col + j)):
                 ls.append((row + i, col + j))
         return ls
-
-    '''
-
-    # có gì đó sai sai, chưa xử lý trường hợp nếu point là điểm thưởng
-    def add_edge(self, pointA, pointB, weight):
-        if pointA in self.graph:
-            self.graph[str(pointA)].append((pointB, weight))
-            self.graph[str(pointB)].append((pointA, weight))
-        else:
-            self.graph[str( pointA )] = [pointA, weight]
-            self.graph[str(pointB)] = [pointB, weight]
-    '''
-
