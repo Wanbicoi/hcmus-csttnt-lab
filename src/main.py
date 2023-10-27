@@ -11,8 +11,8 @@ import os
 
 if __name__ == "__main__":
    graphs = read_files() # [[Graph x 5], [Graph x 3], [Graph x 3]]
-   output_path = ["src/output/level_1", "src/output/level_2", "src/output/level_3", "src/output/advance"]
-   algorithms = ["bfs", "dfs", "ucs", "gbfs", "astar"]
+   output_path = ["src/output/level_1"] # "src/output/level_2", "src/output/level_3", "src/output/advance"
+   algorithms = ["gbfs", "astar"] # "bfs", "dfs", "ucs", 
    for i in range(len(graphs)):
        for j in range(len(graphs[i])):
            for k in range(len(algorithms)):
