@@ -22,8 +22,7 @@ def read_matrix(file_name: str):
             elif matrix[i][j]==' ':
                 if (i==0) or (i==len(matrix)-1) or (j==0) or (j==len(matrix[0])-1):
                     end=(i,j)
-            pass
-        
+                    
     return matrix, points, start, end
 
     

@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import os
 
 def save_fig_visualization(matrix, bonus, start, end, save_file_path:str, route=None):
     """
@@ -48,4 +49,5 @@ def save_fig_visualization(matrix, bonus, start, end, save_file_path:str, route=
     plt.text(end[1],-end[0],'EXIT',color='red',
          horizontalalignment='center',
          verticalalignment='center')
+    os.makedirs(os.path.dirname(save_file_path), exist_ok=True)
     plt.savefig(save_file_path)

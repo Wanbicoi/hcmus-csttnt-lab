@@ -12,8 +12,10 @@ class Graph:
     '''
     def __init__(self, matrix, start, end, bonus_points=[], pickup_points=[]):
         self.graph = defaultdict(list)
+        self.matrix = matrix
         self.start = start
         self.end = end
+        self.cost = 1
         self.bonus_nodes = [(x[0], x[1]) for x in bonus_points]
         self.bonus_points = [x[2] for x in bonus_points]
         self.pickup_nodes = [(x[0], x[1]) for x in pickup_points]

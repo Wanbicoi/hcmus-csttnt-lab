@@ -92,7 +92,7 @@ def demo_with_pygame(matrix, bonus_points, start, end, route, traversed_nodes):
             )
 
         # limits FPS to 60
-        clock.tick(40)
+        clock.tick(60)
 
         # finish and draw the route
         if traversal_counter >= len(traversed_nodes):
