@@ -36,7 +36,7 @@ class Game:
             (self.UNIT * len(matrix[0]), self.UNIT * len(matrix))
         )
         pygame.display.set_caption("pygame window")
-        self.video = vidmaker.Video(path="video.mp4", late_export=True)
+        # self.video = vidmaker.Video(path="video.mp4", late_export=True)
 
         # setting fps
         clock = pygame.time.Clock()
@@ -111,7 +111,7 @@ class Game:
             # re-render window
             pygame.display.flip()
 
-        self.video.export(verbose=True)
+        # self.video.export(verbose=True)
         pygame.quit()
 
     def draw_object(self, x, y, item_rect_on_sheet, rotate=0):
