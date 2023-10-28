@@ -32,11 +32,15 @@ class Game:
     ):
         pygame.init()
 
-        self.screen = pygame.display.set_mode(
-            (self.UNIT * len(matrix[0]), self.UNIT * len(matrix))
-        )
+        SCREEN_WIDTH = self.UNIT * len(matrix[0])
+        SCREEN_HEIGHT = self.UNIT * len(matrix)
+        self.screen = pygame.display.set_mode(size=(SCREEN_WIDTH, SCREEN_HEIGHT))
         pygame.display.set_caption("pygame window")
-        self.video = vidmaker.Video(path="video.mp4", fps=60, late_export=True)
+        # self.video = vidmaker.Video(
+        #     path="video.mp4",
+        #     fps=60,
+        #     resolution=(SCREEN_WIDTH, SCREEN_HEIGHT),
+        # )
 
         # setting fps
         clock = pygame.time.Clock()
@@ -78,6 +82,7 @@ class Game:
             )
             # clock.tick(120)
             pygame.display.flip()
+        # print(traversed_nodes)
 
         for i in route:
             self.draw_object(i[1], i[0], self.ROUTE_RECT, True)
@@ -86,7 +91,7 @@ class Game:
 
         pygame.time.delay(1000)
 
-        self.video.export(verbose=True)
+        # self.video.export(verbose=True)
         pygame.quit()
 
     def draw_object(self, x, y, item_rect_on_sheet, rotate=0, video=False):
@@ -96,10 +101,10 @@ class Game:
         if rotate != 0:
             scaled_item = pygame.transform.rotate(scaled_item, rotate)
 
-        if video:
-            new_surface = pygame.Surface(scaled_item.get_size(), depth=32)
-            new_surface.blit(scaled_item, (0, 0))
-            self.video.update(pygame.surfarray.pixels3d(new_surface).swapaxes(0, 1))
+        # if video:
+        # new_surface = pygame.Surface(scaled_item.get_size(), depth=32)
+        # new_surface.blit(scaled_item, (0, 0))
+        # self.video.update(pygame.surfarray.pixels3d(new_surface).swapaxes(0, 1))
 
         self.screen.blit(scaled_item, (x * self.UNIT, y * self.UNIT))
 
