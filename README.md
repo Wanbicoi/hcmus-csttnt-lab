@@ -57,7 +57,6 @@ get input -> array of Graph
    - Write file: map-file.txt + jpg/mp4
      TRUNG
 
-## References:
+## Report
 
-- [Video](https://www.facebook.com/nguyenthebinh288/videos/847813779289607)
-- [Web](https://ngottrong.github.io/FindShortestPath/)
+- [Latex](https://www.overleaf.com/project/653be21cbd1abc32594b2952)
