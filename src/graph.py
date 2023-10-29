@@ -24,7 +24,7 @@ class Graph:
         self.graph[start] = self.get_adj_nodes(matrix, start[0], start[1])
         for i in range(len(matrix)):
             for j in range(len(matrix[0])):
-                if(matrix[i][j] == " "):
+                if(matrix[i][j] == " " or matrix[i][j] == "+"):
                     self.graph[(i, j)] = self.get_adj_nodes(matrix, i, j)
 
     def heuristics(self, start, end):
@@ -36,7 +36,7 @@ class Graph:
     def valid_node(self, matrix, i, j):
         if(i < 0 or i >= len(matrix) or j < 0 or j >= len(matrix[0])):
             return 0
-        if(matrix[i][j] == " " or matrix[i][j] == "S"):
+        if(matrix[i][j] == " " or matrix[i][j] == "S" or matrix[i][j] == "+"):
             return 1
         return 0
     

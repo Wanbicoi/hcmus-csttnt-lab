@@ -5,8 +5,6 @@ from algorithms.astar import astar2
 from algorithms.gbfs import gbfs1
 from algorithms.gbfs import gbfs2
 from algorithms.ucs import ucs
-from algorithms.algo1 import algo1 # bonus points
-# from algorithms.algo2 import algo2 # pickup points
 import output
 import os
 
