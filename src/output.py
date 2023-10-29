@@ -7,12 +7,7 @@ with contextlib.redirect_stdout(None):
     import pygame
 
 
-def output(graph, route, traversed_nodes, save_file_path):
-    matrix = graph.matrix
-    bonus_points = graph.bonus_points
-    start = graph.start
-    end = graph.end
-
+def output(matrix, bonus_points, start, end, route, traversed_nodes, save_file_path):
     save_fig_visualization(matrix, bonus_points, start, end, save_file_path, route)
     game = Game()
     game.demo_with_pygame(
@@ -28,7 +23,6 @@ class Game:
         self.END_RECT = pygame.Rect(17 * 15, 17 * 9, 16, 16)
         self.BONUS_RECT = pygame.Rect(17 * 14, 17 * 10, 16, 16)
         self.ROUTE_RECT = pygame.Rect(17 * 7, 17 * 4, 16, 16)
-        self.ROUTE_RECT_HEAD = pygame.Rect(17 * 7, 17 * 3, 16, 16)
         self.TRAVERSED_NODE_RECT = pygame.Rect(17 * 17, 17 * 10, 16, 16)
         self.UNIT = 40
         self.sprite_image = pygame.image.load("src/sprite.png")
@@ -74,19 +68,15 @@ class Game:
             self.video.update(pygame.surfarray.pixels3d(self.screen).swapaxes(0, 1))
             pygame.display.update()
 
-        prev = None
-        route.pop(0)
         for i in route:
-            self.draw_object(i[1], i[0], self.ROUTE_RECT_HEAD)
-            if prev is not None:
-                self.draw_object(prev[1], prev[0], self.BACKGROUND_RECT)
-                self.draw_object(prev[1], prev[0], self.ROUTE_RECT)
-            prev = i
+            self.draw_object(i[1], i[0], self.ROUTE_RECT)
             clock.tick(60)
             self.video.update(pygame.surfarray.pixels3d(self.screen).swapaxes(0, 1))
             pygame.display.update()
 
-        self.video.export(verbose=True)
+        pygame.time.delay(500)
+
+        self.video.export()
         pygame.quit()
 
     def draw_object(self, x, y, item_rect_on_sheet, rotate=0):
@@ -99,15 +89,19 @@ class Game:
         self.screen.blit(scaled_item, (x * self.UNIT, y * self.UNIT))
 
     def draw_border(self, x, y, row, col, width, height):
-        ITEM = [{"condition": row == 0, "spriteX": 17, "spriteY": 17 * 4, "angle": 180},
-                {"condition": col == height - 1, "spriteX": 17, "spriteY": 17 * 4, "angle": 90},
-                {"condition": row == width - 1, "spriteX": 17, "spriteY": 17 * 4, "angle": 0},
-                {"condition": col == 0, "spriteX": 17, "spriteY": 17 * 4, "angle": 270},
-                {"condition": row == 0 and col == 0, "spriteX": 0, "spriteY": 17 * 4, "angle": 270},
-                {"condition": row == 0 and col == height - 1, "spriteX": 0, "spriteY": 17 * 4, "angle": 180},
-                {"condition": row == width - 1 and col == 0, "spriteX": 0, "spriteY": 17 * 4, "angle": 0},
-                {"condition": row == width - 1 and col == height - 1, "spriteX": 0, "spriteY": 17 * 4, "angle": 90}]
-
-        for item in ITEM:
-            if item["condition"]:
-                self.draw_object(x, y, pygame.Rect(item["spriteX"], item["spriteY"], 16, 16), item["angle"])
+        if row == 0:
+            self.draw_object(x, y, pygame.Rect(17, 17 * 4, 16, 16), 180)
+        if col == height - 1:
+            self.draw_object(x, y, pygame.Rect(17, 17 * 4, 16, 16), 90)
+        if row == width - 1:
+            self.draw_object(x, y, pygame.Rect(17, 17 * 4, 16, 16))
+        if col == 0:
+            self.draw_object(x, y, pygame.Rect(17, 17 * 4, 16, 16), 270)
+        if row == 0 and col == 0:
+            self.draw_object(x, y, pygame.Rect(0, 17 * 4, 16, 16), 270)
+        if row == 0 and col == height - 1:
+            self.draw_object(x, y, pygame.Rect(0, 17 * 4, 16, 16), 180)
+        if row == width - 1 and col == 0:
+            self.draw_object(x, y, pygame.Rect(0, 17 * 4, 16, 16))
+        if row == width - 1 and col == height - 1:
+            self.draw_object(x, y, pygame.Rect(0, 17 * 4, 16, 16), 90)
