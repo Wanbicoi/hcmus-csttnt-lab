@@ -1,31 +1,27 @@
 from collections import defaultdict
+from queue import PriorityQueue as pq
 def gbfs(g, heuristics):
-    open = (heuristics(g.start, g.end), g.start) # open only 1 node
+    open = pq()
+    open.put((heuristics(g.start, g.end), g.start, g.start))
     close = defaultdict(int) 
     traversed_nodes = [] 
-    prev = defaultdict(list) 
+    prev = defaultdict(tuple) 
     route = [] 
-    while True:
-        h, cur_node = open
+    while not open.empty():
+        h, cur_node, prev_node = open.get()
+        if close[cur_node] == 1:
+            continue
         close[cur_node] = 1
         traversed_nodes.append(cur_node)
+        prev[cur_node] = prev_node
         if cur_node == g.end:
             break
-        higher_node = cur_node
-        max_height = h
         for node in g.graph[cur_node]:
             if not close[node]:
-                if heuristics(node, g.end) < max_height:
-                    higher_node = node
-                    max_height = heuristics(node, g.end)
-        if higher_node != cur_node:
-            open = (max_height, higher_node)
-            prev[higher_node] = cur_node
-        else:
-            break
+                open.put((heuristics(node, g.end), node, cur_node))
     
-    if prev[g.end] == []:
-        return traversed_nodes, route
+    if prev[g.end] == tuple():
+        return traversed_nodes, route # route is empty
     else:
         node = g.end
         while prev[node] != g.start:

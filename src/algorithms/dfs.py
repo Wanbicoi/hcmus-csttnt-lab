@@ -1,24 +1,27 @@
 from collections import defaultdict
+
 def dfs(g):
     print(g.start)
     print(g.end)
-    open = [g.start] # stack, contain nodes to traverse next
+    open = [(g.start, g.start)] # stack, contain nodes to traverse next
     close = defaultdict(int) # check node traversed or not
     traversed_nodes = [] # list containing ordered traversed nodes
-    prev = defaultdict(list) # contain the previous node to trace the route
+    prev = defaultdict(tuple) # contain the previous node to trace the route
     route = [] # route from start to end
     while len(open) > 0:
-        cur_node = open.pop()
+        cur_node, prev_node = open.pop()
+        if close[cur_node]:
+            continue
         close[cur_node] = 1
         traversed_nodes.append(cur_node)
+        prev[cur_node] = prev_node
         if cur_node == g.end:
             break
         for node in g.graph[cur_node]:
             if not close[node]:
-                open.append(node)
-                prev[node] = cur_node
+                open.append((node, cur_node))
     
-    if prev[g.end] == []:
+    if prev[g.end] == tuple():
         return traversed_nodes, route
     else:
         node = g.end
@@ -30,6 +33,3 @@ def dfs(g):
         route.reverse()
         return traversed_nodes, route
         
-
-
-

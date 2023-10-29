@@ -1,54 +1,36 @@
 from collections import defaultdict
+from queue import PriorityQueue as pq
 
-def astar(g, heuristics):
-    open = (g.cost + heuristics(g.start, g.end), g.start) # open only 1 node
+def astar(graph, heuristics):
+    open = pq()
+    open.put((heuristics(graph.start, graph.end), 0, graph.start, graph.start)) 
     close = defaultdict(int) 
-    traversed_nodes = [] 
-    prev = defaultdict(list) 
+    traversed_nodes = []
+    prev = defaultdict(tuple) 
     route = [] 
-    while True:
-        f, cur_node = open
-        close[cur_node] = 1
-        traversed_nodes.append(cur_node)
-        if cur_node == g.end:
+    while not open.empty():
+        f, g, cur_node, prev_node = open.get()
+        if cur_node == graph.end:
+            prev[cur_node] = prev_node
+            traversed_nodes.append(cur_node)
             break
-        next_node = cur_node
-        max = f
-        candidates = []
-        for node in g.graph[cur_node]:
-            if not close[node]:
-                if g.cost + heuristics(node, g.end) < max:
-                    next_node = node
-                    max = g.cost + heuristics(node, g.end)
-                candidates.append((node, g.cost + heuristics(node, g.end)))
-        if next_node != cur_node:
-            open = (max, next_node)
-            prev[next] = cur_node
-        else:
-            next_node2 = cur_node
-            for candidate_f, candidate_node in candidates:
-                for node in g.graph[candidate_node]:
-                    if not close[node]:
-                        if g.cost + heuristics(node, g.end) < max:
-                            next_node = candidate_node
-                            next_node2 = node
-                            max = g.cost + heuristics(node, g.end)
-            if next_node != cur_node:
-                close(next_node)
-                open = (max, next_node2)
-                prev[next_node] = cur_node
-                prev[next_node2] = next_node
-            break
-    
-    if prev[g.end] == []:
+        if close[cur_node] != 1:
+            close[cur_node] = 1
+            prev[cur_node] = prev_node
+            traversed_nodes.append(cur_node)
+            for node in graph.graph[cur_node]:
+                if not close[node]:
+                    open.put((g + graph.cost + heuristics(node, graph.end), g + graph.cost, node, cur_node))
+                    
+    if prev[graph.end] == tuple():
         return traversed_nodes, route
     else:
-        node = g.end
-        while prev[node] != g.start:
+        node = graph.end
+        while prev[node] != graph.start:
             route.append(node)
             node = prev[node]
         route.append(node)
-        route.append(g.start)
+        route.append(graph.start)
         route.reverse()
         return traversed_nodes, route
         
