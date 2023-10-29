@@ -2,12 +2,13 @@ from utils.visualization import save_fig_visualization
 
 import vidmaker
 import contextlib
+import os
 
 with contextlib.redirect_stdout(None):
     import pygame
 
 
-def output(graph, route, traversed_nodes, save_file_path):
+def output(graph, nodes, route, traversed_nodes, save_file_path):
     matrix = graph.matrix
     bonus_points = graph.bonus_points
     start = graph.start
@@ -43,7 +44,7 @@ class Game:
         self.screen = pygame.display.set_mode(size=(SCREEN_WIDTH, SCREEN_HEIGHT))
         self.screen.fill((255, 0, 0))
         pygame.display.set_caption("pygame window")
-        self.video = vidmaker.Video(path=export_file_path + ".mp4", late_export=True)
+        self.video = vidmaker.Video(path=export_file_path + "/" + os.path.basename(export_file_path) + ".mp4", late_export=True)
 
         # setting fps
         clock = pygame.time.Clock()

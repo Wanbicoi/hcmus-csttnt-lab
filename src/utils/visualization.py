@@ -65,4 +65,4 @@ def save_fig_visualization(matrix, bonus, start, end, save_file_path: str, route
     os.makedirs(os.path.dirname(save_file_path), exist_ok=True)
     plt.xticks([])
     plt.yticks([])
-    plt.savefig(save_file_path + ".jpg", format="jpg")
+    plt.savefig(save_file_path + "/" + os.path.basename(save_file_path)+ ".jpg", format="jpg")

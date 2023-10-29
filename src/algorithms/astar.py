@@ -1,6 +1,11 @@
 from collections import defaultdict
 from queue import PriorityQueue as pq
 
+def astar1(graph):
+    return astar(graph, graph.heuristics)
+def astar2(graph):
+    return astar(graph, graph.heuristics2)
+
 def astar(graph, heuristics):
     open = pq()
     open.put((heuristics(graph.start, graph.end), 0, graph.start, graph.start)) 

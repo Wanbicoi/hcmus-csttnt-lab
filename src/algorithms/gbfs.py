@@ -1,5 +1,11 @@
 from collections import defaultdict
 from queue import PriorityQueue as pq
+
+def gbfs1(graph):
+    return gbfs(graph, graph.heuristics)
+def gbfs2(graph):
+    return gbfs(graph, graph.heuristics2)
+
 def gbfs(g, heuristics):
     open = pq()
     open.put((heuristics(g.start, g.end), g.start, g.start))
