@@ -89,19 +89,15 @@ class Game:
         self.screen.blit(scaled_item, (x * self.UNIT, y * self.UNIT))
 
     def draw_border(self, x, y, row, col, width, height):
-        if row == 0:
-            self.draw_object(x, y, pygame.Rect(17, 17 * 4, 16, 16), 180)
-        if col == height - 1:
-            self.draw_object(x, y, pygame.Rect(17, 17 * 4, 16, 16), 90)
-        if row == width - 1:
-            self.draw_object(x, y, pygame.Rect(17, 17 * 4, 16, 16))
-        if col == 0:
-            self.draw_object(x, y, pygame.Rect(17, 17 * 4, 16, 16), 270)
-        if row == 0 and col == 0:
-            self.draw_object(x, y, pygame.Rect(0, 17 * 4, 16, 16), 270)
-        if row == 0 and col == height - 1:
-            self.draw_object(x, y, pygame.Rect(0, 17 * 4, 16, 16), 180)
-        if row == width - 1 and col == 0:
-            self.draw_object(x, y, pygame.Rect(0, 17 * 4, 16, 16))
-        if row == width - 1 and col == height - 1:
-            self.draw_object(x, y, pygame.Rect(0, 17 * 4, 16, 16), 90)
+        ITEM = [{"condition": row == 0, "spriteX": 17, "spriteY": 17 * 4, "angle": 180},
+                {"condition": col == height - 1, "spriteX": 17, "spriteY": 17 * 4, "angle": 90},
+                {"condition": row == width - 1, "spriteX": 17, "spriteY": 17 * 4, "angle": 0},
+                {"condition": col == 0, "spriteX": 17, "spriteY": 17 * 4, "angle": 270},
+                {"condition": row == 0 and col == 0, "spriteX": 0, "spriteY": 17 * 4, "angle": 270},
+                {"condition": row == 0 and col == height - 1, "spriteX": 0, "spriteY": 17 * 4, "angle": 180},
+                {"condition": row == width - 1 and col == 0, "spriteX": 0, "spriteY": 17 * 4, "angle": 0},
+                {"condition": row == width - 1 and col == height - 1, "spriteX": 0, "spriteY": 17 * 4, "angle": 90}]
+
+        for item in ITEM:
+            if item["condition"]:
+                self.draw_object(x, y, pygame.Rect(item["spriteX"], item["spriteY"], 16, 16), item["angle"])
