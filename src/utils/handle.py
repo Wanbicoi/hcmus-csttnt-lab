@@ -3,6 +3,7 @@ from algorithms.dfs import dfs
 from algorithms.astar import astar
 from algorithms.gbfs import gbfs
 from algorithms.ucs import ucs
+from algorithms.bonus import algo1
 import output
 
 algorithm_dict = {
@@ -11,6 +12,7 @@ algorithm_dict = {
     "astar": astar,
     "gbfs": gbfs,
     "ucs": ucs,
+    "algo1": algo1,
 }
 
 
