@@ -7,7 +7,12 @@ with contextlib.redirect_stdout(None):
     import pygame
 
 
-def output(matrix, bonus_points, start, end, route, traversed_nodes, save_file_path):
+def output(graph, route, traversed_nodes, save_file_path):
+    matrix = graph.matrix
+    bonus_points = graph.bonus_points
+    start = graph.start
+    end = graph.end
+
     save_fig_visualization(matrix, bonus_points, start, end, save_file_path, route)
     game = Game()
     game.demo_with_pygame(
@@ -23,6 +28,7 @@ class Game:
         self.END_RECT = pygame.Rect(17 * 15, 17 * 9, 16, 16)
         self.BONUS_RECT = pygame.Rect(17 * 14, 17 * 10, 16, 16)
         self.ROUTE_RECT = pygame.Rect(17 * 7, 17 * 4, 16, 16)
+        self.ROUTE_RECT_HEAD = pygame.Rect(17 * 7, 17 * 3, 16, 16)
         self.TRAVERSED_NODE_RECT = pygame.Rect(17 * 17, 17 * 10, 16, 16)
         self.UNIT = 40
         self.sprite_image = pygame.image.load("src/sprite.png")
@@ -68,15 +74,19 @@ class Game:
             self.video.update(pygame.surfarray.pixels3d(self.screen).swapaxes(0, 1))
             pygame.display.update()
 
+        prev = None
+        route.pop(0)
         for i in route:
-            self.draw_object(i[1], i[0], self.ROUTE_RECT)
+            self.draw_object(i[1], i[0], self.ROUTE_RECT_HEAD)
+            if prev is not None:
+                self.draw_object(prev[1], prev[0], self.BACKGROUND_RECT)
+                self.draw_object(prev[1], prev[0], self.ROUTE_RECT)
+            prev = i
             clock.tick(60)
             self.video.update(pygame.surfarray.pixels3d(self.screen).swapaxes(0, 1))
             pygame.display.update()
 
-        pygame.time.delay(500)
-
-        self.video.export()
+        self.video.export(verbose=True)
         pygame.quit()
 
     def draw_object(self, x, y, item_rect_on_sheet, rotate=0):
