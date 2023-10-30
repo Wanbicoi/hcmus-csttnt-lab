@@ -4,6 +4,7 @@ from queue import PriorityQueue as pq
 def algo1(graph, heuristics):
     bonus_list = [(heuristics(bonus_node, graph.end), bonus_point, bonus_node) for bonus_node, bonus_point in zip(graph.bonus_nodes, graph.bonus_points)]
     bonus_list.sort()
+    print(bonus_list)
     # set goal list from bonus list
     goal_list = [graph.end]
     for h, point, node in bonus_list:
@@ -18,7 +19,7 @@ def algo1(graph, heuristics):
     start = graph.start
     prev[start] = start
     # search for each sub-route
-    while len(goal_list) == 0:
+    while len(goal_list) > 0:
         traversed_nodes = []
         goal = goal_list[-1]
         open = pq() 
@@ -37,7 +38,7 @@ def algo1(graph, heuristics):
                 prev[cur_node] = prev_node
                 traversed_nodes.append(cur_node)
                 for node in graph.graph[cur_node]:
-                    if not temp_close[cur_node] and not close[cur_node]:
+                    if not temp_close[node] and not close[node]:
                         open.put((g + graph.cost + heuristics(node, graph.end), g + graph.cost, node, cur_node))
         goal_list.pop()
         traversed_nodelist.append(traversed_nodes)
@@ -53,5 +54,8 @@ def algo1(graph, heuristics):
             temp_route.reverse()
             route.extend(temp_route)
             start = goal 
-
+            
+    for i in range(len(traversed_nodelist)):
+        print(traversed_nodelist[i])
+    
     return traversed_nodelist, route

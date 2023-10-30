@@ -9,11 +9,16 @@ with contextlib.redirect_stdout(None):
 
 
 def output(graph, nodes, route, traversed_nodes, save_file_path):
+    
     matrix = graph.matrix
     bonus_points = graph.bonus_points
     start = graph.start
     end = graph.end
-
+    
+    # save the number of route
+    with open(save_file_path + "/" + os.path.basename(save_file_path) + ".txt", "w") as w:
+        w.write(str(len(route)))
+    
     save_fig_visualization(matrix, bonus_points, start, end, save_file_path, route)
     game = Game()
     game.demo_with_pygame(

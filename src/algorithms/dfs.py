@@ -1,8 +1,6 @@
 from collections import defaultdict
 
 def dfs(g):
-    print(g.start)
-    print(g.end)
     open = [(g.start, g.start)] # stack, contain nodes to traverse next
     close = defaultdict(int) # check node traversed or not
     traversed_nodes = [] # list containing ordered traversed nodes
