@@ -64,6 +64,6 @@ def handle(graphs, output_dir):
 
     for level in levels:
         os.makedirs(output_dir + level, exist_ok=True)
-    # handle_level1(graphs[0], output_dir + "level1/")
-    handle_level2(graphs[1], output_dir + "level2/")
-    # handle_level3(graphs[2], output_dir + "level3/")
+    handle_level1(graphs[0], output_dir + "level_1/")
+    # handle_level2(graphs[1], output_dir + "level_2/")
+    # handle_level3(graphs[2], output_dir + "level_3/")

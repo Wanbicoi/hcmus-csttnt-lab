@@ -18,7 +18,10 @@ def output(graph, nodes, route, traversed_nodes, save_file_path):
     with open(
         save_file_path + "/" + os.path.basename(save_file_path) + ".txt", "w"
     ) as w:
-        w.write(str(len(route)))
+        if len(route) == 0:
+            w.write("NO")
+        else:
+            w.write(str(len(route)))
 
     save_fig_visualization(matrix, bonus_points, start, end, save_file_path, route)
     game = Game(bonus_points, start, end)
