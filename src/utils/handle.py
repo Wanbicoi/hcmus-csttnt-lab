@@ -22,6 +22,7 @@ algorithm_dict = {
 
 levels = ["level1", "level2", "level3", "advance"]
 
+
 def handle_level1(graphs, output_dir):
     inputs = ["input" + str(i) for i in range(1, len(graphs) + 1)]
 
@@ -32,7 +33,8 @@ def handle_level1(graphs, output_dir):
             os.makedirs(algo_dir, exist_ok=True)
             traversed_nodes, route = algorithm_dict[algorithm](graphs[i])
             output.output(graphs[i], [], route, traversed_nodes, algo_dir)
-    
+
+
 def handle_level2(graphs, output_dir):
     inputs = ["input" + str(i) for i in range(1, len(graphs) + 1)]
     for i in range(len(graphs)):
@@ -40,8 +42,11 @@ def handle_level2(graphs, output_dir):
         algo_dir = output_dir + inputs[i] + "/" + "algo1"
         os.makedirs(algo_dir, exist_ok=True)
         traversed_nodelist, route = algo1(graphs[i], graphs[i].heuristics2)
-        output.output(graphs[i], graphs[i].bonus_nodes, route, traversed_nodelist, algo_dir)
-        
+        output.output(
+            graphs[i], graphs[i].bonus_nodes, route, traversed_nodelist, algo_dir
+        )
+
+
 def handle_level3(graphs, output_dir):
     inputs = ["input" + str(i) for i in range(1, len(graphs) + 1)]
     for i in range(len(graphs)):
@@ -49,16 +54,16 @@ def handle_level3(graphs, output_dir):
         algo_dir = output_dir + inputs[i] + "/" + "algo2"
         os.makedirs(algo_dir, exist_ok=True)
         traversed_nodelist, route = algo2(graphs[i], graphs[i].heuristics2)
-        output.output(graphs[i], graphs[i].bonus_nodes, route, traversed_nodelist, algo_dir)
-    
+        output.output(
+            graphs[i], graphs[i].bonus_nodes, route, traversed_nodelist, algo_dir
+        )
+
+
 def handle(graphs, output_dir):
     os.makedirs(output_dir, exist_ok=True)
-    
+
     for level in levels:
         os.makedirs(output_dir + level, exist_ok=True)
     # handle_level1(graphs[0], output_dir + "level1/")
-    # handle_level2(graphs[1], output_dir + "level2/")
-    handle_level3(graphs[2], output_dir + "level3/")
-    
-    
-
+    handle_level2(graphs[1], output_dir + "level2/")
+    # handle_level3(graphs[2], output_dir + "level3/")
