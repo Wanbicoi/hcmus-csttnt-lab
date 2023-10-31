@@ -46,9 +46,9 @@ def handle_level2(graphs, output_dir):
         algo_dir = output_dir + inputs[i] + "/" + "algo1"
         os.makedirs(algo_dir, exist_ok=True)
         traversed_nodelist, route = algo1(graphs[i], graphs[i].heuristics2)
-        # output.output(
-        #     graphs[i], graphs[i].bonus_nodes, route, traversed_nodelist, algo_dir
-        # )
+        output.output(
+            graphs[i], graphs[i].bonus_nodes, route, traversed_nodelist, algo_dir
+        )
 
 
 def handle_level3(graphs, output_dir):
@@ -58,9 +58,9 @@ def handle_level3(graphs, output_dir):
         algo_dir = output_dir + inputs[i] + "/" + "algo2"
         os.makedirs(algo_dir, exist_ok=True)
         traversed_nodelist, route = algo2(graphs[i], graphs[i].heuristics2)
-        # output.output(
-        #     graphs[i], graphs[i].pickup_nodes, route, traversed_nodelist, algo_dir
-        # )
+        output.output(
+            graphs[i], graphs[i].pickup_nodes, route, traversed_nodelist, algo_dir
+        )
 
 
 def handle(graphs, output_dir):
@@ -68,6 +68,6 @@ def handle(graphs, output_dir):
 
     for level in levels:
         os.makedirs(output_dir + level, exist_ok=True)
-    # handle_level1(graphs[0], output_dir + "level_1/")
+    handle_level1(graphs[0], output_dir + "level_1/")
     handle_level2(graphs[1], output_dir + "level_2/")
-    # handle_level3(graphs[2], output_dir + "level_3/")
+    handle_level3(graphs[2], output_dir + "level_3/")
