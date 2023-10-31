@@ -25,23 +25,25 @@ def output(graph, nodes, route, traversed_nodes, save_file_path):
             w.write(str(len(route)))
 
     save_fig_visualization(matrix, bonus_points, start, end, save_file_path, route)
-    game = Game(bonus_points, start, end)
+    game = Game(bonus_points, graph.pickup_nodes, start, end)
     game.demo_with_pygame(
         matrix, bonus_points, start, end, route, traversed_nodes, save_file_path
     )
 
 
 class Game:
-    def __init__(self, bonus_points, start, end):
+    def __init__(self, bonus_points, pickup_points, start, end):
         self.bonus_points = bonus_points
         self.end = end
         self.start = start
+        self.pickup_nodes = pickup_points
 
         self.WALL_RECT = pygame.Rect(17 * 4, 17 * 5, 16, 16)
         self.BACKGROUND_RECT = pygame.Rect(17, 0, 16, 16)
         self.START_RECT = pygame.Rect(17 * 16, 17 * 8, 16, 16)
         self.END_RECT = pygame.Rect(17 * 15, 17 * 9, 16, 16)
-        self.BONUS_RECT = pygame.Rect(17 * 14, 17 * 10, 16, 16)
+        self.BONUS_RECT = pygame.Rect(17 * 15, 17 * 10, 16, 16)
+        self.PICKUP_RECT = pygame.Rect(17 * 14, 17 * 10, 16, 16)
         self.ROUTE_RECT = pygame.Rect(17 * 7, 17 * 4, 16, 16)
         self.TRAVERSED_NODE_RECT = pygame.Rect(17 * 17, 17 * 10, 16, 16)
         self.UNIT = 40
@@ -141,6 +143,11 @@ class Game:
         # draw bonus_points
         for bonus_point in self.bonus_points:
             self.draw_object_base(bonus_point[1], bonus_point[0], self.BONUS_RECT)
+
+        # draw bonus_points
+        if isinstance(self.pickup_nodes, list):
+            for bonus_point in self.pickup_nodes:
+                self.draw_object_base(bonus_point[1], bonus_point[0], self.PICKUP_RECT)
 
     def draw_border(self, x, y, row, col, width, height):
         if row == 0:
