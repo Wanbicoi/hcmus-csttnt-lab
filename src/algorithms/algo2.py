@@ -27,7 +27,10 @@ def find_farthest_node(pickup_nodes, goal, heuristics):
     return farthest_node
 
 def algo2(graph, heuristics):
-    pickup_list = graph.pickup_nodes
+    
+    pickup_list = []
+    for node in graph.pickup_nodes:
+        pickup_list.append(node)
     pickup_list.append(graph.end)
     ls = []
     traversed_nodelist = []
@@ -75,6 +78,6 @@ def algo2(graph, heuristics):
             route.extend(temp_route)
             start = goal
         pickup_list.remove(goal)
-    
+    print(graph.pickup_nodes)
     return traversed_nodelist, route
         
