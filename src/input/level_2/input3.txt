@@ -11,21 +11,21 @@
 18 5 -3
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 x  xx  xxx     xxx      xxx     + xxxx
-x +xxx     xxx      xxx xxxx    x   xx
-xx xxxxx  xxxxxxx xxxxx x        xx xx
-x      xx xxxx    xxxxx xxxxxx   xx  x
-xxx + xxx xxx  xxxxxxx xxxxxxx x      
-x   xxxxx  xx+  xx   xx  xxx   xxxx  x
-xx  xxxxxx  xx  xx xxxx  xxxxx xxx   x
-xxx  xxxxxx     x  xxx   xxxxxxx x xxx
-xx   xxxxxxxxx   + xxx   xxxxxx  + xxx
-xxx  xxx  xxxxxx  xxxxx     xxx  xxxxx
-xxxx       x xx    xxxxx    xx x  xxxx
-xxxxxxxxx    xx xxxxx      xxx xxx   x
-xx    xxxx  S      xxxxx xxxx  xxxx  x
+x +        xxx          x xx    x   xx
+xx    xx  xx   xx x   x           x xx
+x      xx   xx    xx  x xxx       x  x
+xxx + x     x  xx   xx  x   xx x      
+x     xxx  xx+  xx   xx   xx   x xx  x
+xx  x  xx   x      x xx  xx  x   x   x
+xxx  x xxx      x  x     xxx  xx   x x
+xx   x xx    x   + xxx   xx  xx  +  xx
+xxx  xxx  x  xxx     xx     xxx     xx
+xxxx       x xx    xxxxx       x  xxxx
+xx   xxxx    xx xxxxx      xxx  xx   x
+xx    xxxx  S      xxxxx x      xxx  x
 xxxx +        xxxxxx    xxxxx   xxx xx
-xxxxx  xxx   xxxxx   xx  xxxxx  +   xx
-xxx     xx    xxx   xxx  xxxxx   xxxxx
-x    xxxxx xxxxx    xxx+   xxx   xxxxx
+xxxxx  xxx      xx   xx  xxxxx  +   xx
+xxx     xx    x x   xxx  xxxxx     xxx
+x    xxxxx xxxx        +   xxx       x
 xxx  +              xxxxxx       xxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

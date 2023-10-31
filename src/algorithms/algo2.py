@@ -75,10 +75,6 @@ def algo2(graph, heuristics):
             route.extend(temp_route)
             start = goal
         pickup_list.remove(goal)
-        
-            
-    """ for i in range(len(traversed_nodelist)):
-        print(traversed_nodelist[i]) """
     
     return traversed_nodelist, route
         
