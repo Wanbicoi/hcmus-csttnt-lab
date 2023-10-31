@@ -6,6 +6,7 @@ from algorithms.gbfs import gbfs1
 from algorithms.gbfs import gbfs2
 from algorithms.ucs import ucs
 from algorithms.algo1 import algo1
+from algorithms.algo1 import algo_1
 from algorithms.algo2 import algo2
 import output
 import os
@@ -39,9 +40,9 @@ def handle_level2(graphs, output_dir):
     inputs = ["input" + str(i) for i in range(1, len(graphs) + 1)]
     for i in range(len(graphs)):
         os.makedirs(output_dir + inputs[i], exist_ok=True)
-        algo_dir = output_dir + inputs[i] + "/" + "algo1"
+        algo_dir = output_dir + inputs[i] + "/" + "algo_1"
         os.makedirs(algo_dir, exist_ok=True)
-        traversed_nodelist, route = algo1(graphs[i], graphs[i].heuristics2)
+        traversed_nodelist, route = algo_1(graphs[i], graphs[i].heuristics2)
         output.output(
             graphs[i], graphs[i].bonus_nodes, route, traversed_nodelist, algo_dir
         )
@@ -64,6 +65,6 @@ def handle(graphs, output_dir):
 
     for level in levels:
         os.makedirs(output_dir + level, exist_ok=True)
-    handle_level1(graphs[0], output_dir + "level_1/")
-    # handle_level2(graphs[1], output_dir + "level_2/")
-    # handle_level3(graphs[2], output_dir + "level_3/")
+    #handle_level1(graphs[0], output_dir + "level_1/")
+    handle_level2(graphs[1], output_dir + "level_2/")
+    #handle_level3(graphs[2], output_dir + "level_3/")

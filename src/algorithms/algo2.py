@@ -2,23 +2,30 @@ from collections import defaultdict
 from queue import PriorityQueue as pq
 import math
 
-
-def manhattan_distance(point1, point2):
-    return abs(point1[0] - point2[0]) + abs(point1[1] - point2[1])
-
-
-def find_nearest_node(cur_node, pickup_nodes, heuristics):
-    nearest_node = pickup_nodes[0] 
-    min_distance = heuristics(cur_node, nearest_node)
+def find_node(cur_node, pickup_nodes, goal, heuristics):
+    best_node = pickup_nodes[0] 
+    max = heuristics(best_node, goal) - heuristics(cur_node, best_node)
 
     for node in pickup_nodes:
-        distance = heuristics(cur_node, node)
-        if distance < min_distance:
-            nearest_node = node
-            min_distance = distance
+        distance = heuristics(node, goal) - heuristics(cur_node, node)
+        if distance > max:
+            best_node = node
+            max = distance
 
-    return nearest_node
+    return best_node
+
+def find_farthest_node(pickup_nodes, goal, heuristics):
+    farthest_node = pickup_nodes[0]
+    max = heuristics(farthest_node, goal)
     
+    for node in pickup_nodes:
+        distance = heuristics(node, goal)
+        if distance > max:
+            farthest_node = node
+            max = distance
+
+    return farthest_node
+
 def algo2(graph, heuristics):
     pickup_list = graph.pickup_nodes
     pickup_list.append(graph.end)
@@ -31,10 +38,12 @@ def algo2(graph, heuristics):
 
     while len(pickup_list) > 0:
         traversed_nodes = []
-        if(len(pickup_list) == 1):
+        if(len(pickup_list) == 1): # goal is graph.end
             goal = pickup_list[0]
+        elif start == graph.start: # goal is farthest node
+            goal = find_farthest_node(pickup_list[:-1], graph.end, heuristics)
         else:    
-            goal = find_nearest_node(start, pickup_list[:-1], heuristics)
+            goal = find_node(start, pickup_list[:-1], graph.end, heuristics)
         open = pq()
         open.put((heuristics(start, goal), 0, start, prev[start]))
         close = defaultdict(int)
