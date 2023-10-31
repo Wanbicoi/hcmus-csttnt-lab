@@ -51,6 +51,4 @@ def algo1(graph, heuristics):
             temp_route.reverse()
             route.extend(temp_route)
             start = goal 
-    for traversed in traversed_nodelist:
-        print(traversed)
     return traversed_nodelist, route

@@ -13,7 +13,7 @@ x x  xxx  xxxxxx  xxxxx     xxx  xxxxx
 x          x xx    xxxxx    xx    x xx
 xxxx         xx xxxxx      xxx xxx   x
 xx    xxxx         xxxxx  xxx  xxxx  x
-xx       S     xx xxx     xxxx   xxx xx
+xx       S     xx xxx    xxxx   xxx xx
 xxxxx  xxx   xxx     xx  xx         xx
 xxx     xx    xxx   xxx  xx xx   x  xx
 x     xxxx xxx x     xx    xxx   x  xx

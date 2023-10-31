@@ -17,9 +17,9 @@ x   xx S  xxx       xxx       x x
 x                    x        x x
 x xxx        xxx    xxx      xx x
 x xx      +  xx      xxx    xxx x
-x xxx   xxxx x    +  xxxxx      x
-x       xxx xx       xx+ x  xx  x
-x  +         x  xxxxxx     xxx  x
+x xxx   xxxx x    +  xxx        x
+x       xxx xx       xx+ x   x  x
+x  +         x  xxxx x     xxx  x
 x            x             x    x
 x  xxxx xxxxxx        x    x    x
 x  xxxxx              x          
@@ -28,5 +28,5 @@ x       +       xxxxxxx         x
 x    xxxxx          xxx   xxx   x
 x  +  x  xxxx  +    x     xx    x
 x           xxx           x     x
-x           x         +         x
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  
+x                     +         x
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

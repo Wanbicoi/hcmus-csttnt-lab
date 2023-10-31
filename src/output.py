@@ -20,6 +20,7 @@ def output(graph, nodes, route, traversed_nodes, save_file_path):
     ) as w:
         if len(route) == 0:
             w.write("NO")
+            return
         else:
             w.write(str(len(route)))
 

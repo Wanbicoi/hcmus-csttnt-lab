@@ -20,25 +20,11 @@ def find_nearest_node(cur_node, pickup_nodes, heuristics):
     return nearest_node
     
 def algo2(graph, heuristics):
-<<<<<<< HEAD
-    pickup_list = []
-    pickup_list.append(graph.start)
-    while graph.pickup_nodes:
-        nearest_node = find_nearest_node(pickup_list[-1], graph.pickup_nodes)
-        pickup_list.append(nearest_node)
-        graph.pickup_nodes.remove(nearest_node)
-    pickup_list.append(graph.end)
-    
-    print(pickup_list)
-    
-    traversed_nodes = []
-=======
     pickup_list = graph.pickup_nodes
     pickup_list.append(graph.end)
     ls = []
     traversed_nodelist = []
     prev = defaultdict(tuple)
->>>>>>> fd5531c1c6376dd6e4147a413353c42673f40ffd
     route = []
     start = graph.start
     prev[start] = start
@@ -82,15 +68,8 @@ def algo2(graph, heuristics):
         pickup_list.remove(goal)
         
             
-    """ for i in range(len(traversed_nodelist)):
-        print(traversed_nodelist[i]) """
+    for i in range(len(traversed_nodelist)):
+        print(traversed_nodelist[i]) 
     
-<<<<<<< HEAD
-    
-    return traversed_nodes, route
-    
-    
-=======
     return traversed_nodelist, route
         
->>>>>>> fd5531c1c6376dd6e4147a413353c42673f40ffd
