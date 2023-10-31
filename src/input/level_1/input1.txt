@@ -8,6 +8,6 @@ x   x       x    xxxx  x
 x   x     xxx   x      x
    xx  x   xx xxxx     x
 xx  x  x            x  x
-x  xx  xx x  xxx  xx   x
-x         xx       S xxx
+x   x  xx x  xxx  xx   x
+x                  S xxx
 xxxxxxxxxxxxxxxxxxxxxxxx

@@ -25,22 +25,22 @@
 18 15 0
 18 30 0
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-x  xx  xxx     xxx      xxx   +   xxxx
-x  xx   +  xxx   +  xx  x  x    x   xx
-xx x   x      xxx xxx +          x  xx
-x  +   xx xxx  +  xx    xx  xx + xx  x
-xxx       xxx  x  xx   x  xxxx        
-x   x   +  xx+  xx       xxx     xx  x
-x   xxx     xx  xx xx  +   xxx       x
-xxx  xx         x  xxx   x xx   +x  xx
-xx + xx  x   +     xxx   xxx       xxx
-x x  xxx  x  xxx          + xxx     xx
-x         xx xx   +xx xx    xx x  x xx
-xxxx         xx xxxxx  +   xx  xx    x
-x     xxxx  S     +x  xx xx     xx   x
-xx+           xx x        xxx   xxx xx
-xxx x  xxx     x x + xx  xx       + xx
-xxx     xx   +xx    xx   xx xx   x  xx
-x  +  xxxx xxx x       +   xxx   x  xx
-xxx            +    xxxxx     +    xxx
+x      xx      xx       xxx   +     xx
+x  xx   +  xx    +  xx  x  x    x    x
+xx     x       xx x x +          x  xx
+x  +   xx x x  +  x     xx  xx + xx  x
+xxx            x  x    x  x xx        
+x   x   +  xx+  x          x     xx  x
+x    xx     x   xx  x  +   xxx       x
+xx   x          x   xx   x  x   +x  xx
+x  +     x   +       x   xxx       xxx
+x x  xxx     xxx          + xx       x
+x         xx x    +xx xx       x  x xx
+xxxx            x x    +   xx        x
+x     xx    S     +x  xx        xx   x
+xx+           xx x        xxx     x  x
+x   x  x       x x +  x  x        + xx
+xx      xx   + x    xx      xx   x   x
+x  +    x   xx x       +     x   x   x
+x              +       xx     +     xx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
