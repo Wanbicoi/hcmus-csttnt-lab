@@ -48,7 +48,3 @@ class Graph:
             if(self.valid_node(matrix, row + i, col + j)):
                 ls.append((row + i, col + j))
         return ls
-    def get_adj_nodes_advance(self, teleport_nodes):
-        # teleport_nodes = [(i, j, i*, j*) ...] where (i, j) can teleport to (i*, j*) is the other end with cost = 0
-        for i, j, i1, j1 in teleport_nodes:
-            self.graph[(i, j)].append((i1, j1))

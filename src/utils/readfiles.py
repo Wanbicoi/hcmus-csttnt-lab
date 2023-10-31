@@ -78,13 +78,13 @@ def read_files():
           graph.append(graph_level_3)
       elif (path == "advance"):
           graph_advance = []
-          input_advance = [os.path.join(input_path, path, file) for file in os.listdir(os.path.join(input_path, path))]
-          for file in input_advance:
-            teleport_nodes, matrix, start, end = read_matrix(file)
-            graph = Graph(matrix, start, end, [], [])
-            graph.get_adj_nodes_advance(teleport_nodes)
-            graph_advance.append(graph)
-          graph.append(graph_advance)
+          # input_advance = [os.path.join(input_path, path, file) for file in os.listdir(os.path.join(input_path, path))]
+          # for file in input_advance:
+          #   teleport_nodes, matrix, start, end = read_matrix(file)
+          #   graph = Graph(matrix, start, end, [], [])
+          #   graph.get_adj_nodes_advance(teleport_nodes)
+          #   graph_advance.append(graph)
+          # graph.append(graph_advance)
       else:
         print("Invalid input path")
     return graph
