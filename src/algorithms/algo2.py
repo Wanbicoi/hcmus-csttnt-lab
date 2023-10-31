@@ -2,50 +2,17 @@ from collections import defaultdict
 from queue import PriorityQueue as pq
 import math
 
-def astar(graph, heuristics, start, end):
-    open = pq()
-    open.put((heuristics(start, end), 0, start, start))
-    close = defaultdict(int)
-    traversed_nodes = []
-    prev = defaultdict(tuple)
-    route = []
-
-    while not open.empty():
-        f, g, cur_node, prev_node = open.get()
-        if cur_node == end:
-            prev[cur_node] = prev_node
-            traversed_nodes.append(cur_node)
-            break
-        if close[cur_node] != 1:
-            close[cur_node] = 1
-            prev[cur_node] = prev_node
-            traversed_nodes.append(cur_node)
-            for node in graph.graph[cur_node]:
-                if not close[node]:
-                    open.put((g + graph.cost + heuristics(node, end), g + graph.cost, node, cur_node))
-
-    if prev[end] == tuple():
-        return traversed_nodes, route
-    else:
-        node = end
-        while node != start:
-            route.append(node)
-            node = prev[node]
-        route.append(start)
-        route.reverse()
-        return traversed_nodes, route
-
 
 def manhattan_distance(point1, point2):
     return abs(point1[0] - point2[0]) + abs(point1[1] - point2[1])
 
 
-def find_nearest_node(current, pickup_nodes):
+def find_nearest_node(cur_node, pickup_nodes, heuristics):
     nearest_node = pickup_nodes[0] 
-    min_distance = manhattan_distance(current, nearest_node)
+    min_distance = heuristics(cur_node, nearest_node)
 
     for node in pickup_nodes:
-        distance = manhattan_distance(current, node)
+        distance = heuristics(cur_node, node)
         if distance < min_distance:
             nearest_node = node
             min_distance = distance
@@ -53,6 +20,7 @@ def find_nearest_node(current, pickup_nodes):
     return nearest_node
     
 def algo2(graph, heuristics):
+<<<<<<< HEAD
     pickup_list = []
     pickup_list.append(graph.start)
     while graph.pickup_nodes:
@@ -64,13 +32,65 @@ def algo2(graph, heuristics):
     print(pickup_list)
     
     traversed_nodes = []
+=======
+    pickup_list = graph.pickup_nodes
+    pickup_list.append(graph.end)
+    ls = []
+    traversed_nodelist = []
+    prev = defaultdict(tuple)
+>>>>>>> fd5531c1c6376dd6e4147a413353c42673f40ffd
     route = []
-    for i in range(len(pickup_list) - 1):
-        temp_traversed_nodes, temp_route = astar(graph, heuristics, pickup_list[i], pickup_list[i + 1])
-        traversed_nodes += temp_traversed_nodes
-        route += temp_route
+    start = graph.start
+    prev[start] = start
+
+    while len(pickup_list) > 0:
+        traversed_nodes = []
+        if(len(pickup_list) == 1):
+            goal = pickup_list[0]
+        else:    
+            goal = find_nearest_node(start, pickup_list[:-1], heuristics)
+        open = pq()
+        open.put((heuristics(start, goal), 0, start, prev[start]))
+        close = defaultdict(int)
+        while not open.empty():
+            f, g, cur_node, prev_node = open.get()
+            if cur_node == goal:
+                prev[cur_node] = prev_node
+                traversed_nodes.append(cur_node)
+                break
+                
+            if not close[cur_node]:
+                close[cur_node] = 1
+                prev[cur_node] = prev_node
+                traversed_nodes.append(cur_node)
+                for node in graph.graph[cur_node]:
+                    if not close[node]:
+                        open.put((g + graph.cost + heuristics(node, goal), g + graph.cost, node, cur_node))
+        
+        traversed_nodelist.append(traversed_nodes)
+        if prev[goal] != tuple():
+            # if found the goal, update the starting node, route, and close the node on route
+            node = goal
+            temp_route = []
+            while node != start:
+                temp_route.append(node)
+                node = prev[node]
+            temp_route.append(start)
+            temp_route.reverse()
+            route.extend(temp_route)
+            start = goal
+        pickup_list.remove(goal)
+        
+            
+    """ for i in range(len(traversed_nodelist)):
+        print(traversed_nodelist[i]) """
     
+<<<<<<< HEAD
     
     return traversed_nodes, route
     
     
+=======
+    return traversed_nodelist, route
+        
+>>>>>>> fd5531c1c6376dd6e4147a413353c42673f40ffd

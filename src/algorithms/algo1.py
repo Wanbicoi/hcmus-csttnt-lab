@@ -10,8 +10,7 @@ def algo1(graph, heuristics):
         goal = goal_list[-1]
         if h + point + heuristics(graph.start, node) < heuristics(graph.start, goal):
             goal_list.append(node)
-
-    close = defaultdict(int) 
+ 
     traversed_nodelist = []
     prev = defaultdict(tuple) 
     route = []
@@ -22,9 +21,9 @@ def algo1(graph, heuristics):
         traversed_nodes = []
         goal = goal_list[-1]
         open = pq() 
-        open.put((heuristics(start, goal_list[-1]), 0, start, prev[start]))
+        open.put((heuristics(start, goal), 0, start, prev[start]))
         # set temporary close for sub-route
-        temp_close = defaultdict(int)
+        close = defaultdict(int)
         while not open.empty():
             f, g, cur_node, prev_node = open.get()
             if cur_node == goal:
@@ -32,13 +31,13 @@ def algo1(graph, heuristics):
                 traversed_nodes.append(cur_node)
                 break
                 
-            if not temp_close[cur_node]:
-                temp_close[cur_node] = 1
+            if not close[cur_node]:
+                close[cur_node] = 1
                 prev[cur_node] = prev_node
                 traversed_nodes.append(cur_node)
                 for node in graph.graph[cur_node]:
-                    if not temp_close[node] and not close[node]:
-                        open.put((g + graph.cost + heuristics(node, graph.end), g + graph.cost, node, cur_node))
+                    if not close[node]:
+                        open.put((g + graph.cost + heuristics(node, goal), g + graph.cost, node, cur_node))
         goal_list.pop()
         traversed_nodelist.append(traversed_nodes)
         if prev[goal] != tuple():
@@ -48,7 +47,6 @@ def algo1(graph, heuristics):
             while node != start:
                 temp_route.append(node)
                 node = prev[node]
-                close[node] = 1
             temp_route.append(start)
             temp_route.reverse()
             route.extend(temp_route)
