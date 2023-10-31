@@ -1,5 +1,5 @@
 from collections import defaultdict
-
+import time
 def dfs(g):
     open = [(g.start, g.start)] # stack, contain nodes to traverse next
     close = defaultdict(int) # check node traversed or not
